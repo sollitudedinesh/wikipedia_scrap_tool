@@ -13,6 +13,7 @@ from pymilvus import (
     Collection,
 )
 from typing import List, Dict
+import os
 import openai
 
 app = FastAPI()
@@ -44,7 +45,7 @@ def query_data(query_request: QueryRequest) -> Dict:
                 search_results.append(hit.entity)
 
         context = " ".join(search_results)
-        openai.api_key = 'your-api-key-here'
+        openai.api_key = os.getenv("OPENAI_API_KEY")
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=f"Answer the question based on the following context: {context}\nQuestion: {query_request.question}",
