@@ -44,7 +44,7 @@ def query_data(query_request: QueryRequest) -> Dict:
                 search_results.append(hit.entity)
 
         context = " ".join(search_results)
-        openai.api_key = 'sk-n7YFs4EeIcvjb6FzeW052wqv40pofHHVIfg3ehY5BRT3BlbkFJwAKEtXLI9zYoOqtTsSyK-YRYFMcVNOr8XE11_hrCUA'  # Replace with your OpenAI API key
+        openai.api_key = 'your-api-key-here'
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=f"Answer the question based on the following context: {context}\nQuestion: {query_request.question}",
